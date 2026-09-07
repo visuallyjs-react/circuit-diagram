@@ -6,7 +6,6 @@ import {
     ExportControlsComponent, ControlsComponent
 } from "@visuallyjs/browser-ui-react";
 import diagramOptions from "./diagram-options.ts"
-import modelOptions from "./model-options.ts"
 import Inspector from "./Inspector";
 
 function App({url}) {
@@ -22,7 +21,6 @@ function App({url}) {
             </div>
             <DiagramComponent style={{flexGrow:1}}
                               options={diagramOptions}
-                              modelOptions={modelOptions}
                               url={url}/>
             <Inspector/>
 

@@ -1,4 +1,4 @@
-import {InspectorComponent, useDiagram, useSurface} from "@visuallyjs/browser-ui-react";
+import {InspectorComponent, useDiagram, ColorPickerComponent} from "@visuallyjs/browser-ui-react";
 import { isNode } from "@visuallyjs/browser-ui";
 import { ShapePropertiesInspector } from "./ShapePropertiesInspector";
 
@@ -32,14 +32,18 @@ export default function Inspector() {
                                     </button>
                                 </div>
 
-                                <div className="vjs-inspector-properties">
-                                    <div className="vjs-inspector-field">
-                                        <label>Label</label>
-                                        <input type="text" vjs-att="label" placeholder="Label"/>
-                                    </div>
-
-                                    <ShapePropertiesInspector vertex={current} model={model} surface={diagram.$ui} />
+                            <div className="vjs-inspector-properties">
+                                <div className="vjs-inspector-field">
+                                    <label>Label</label>
+                                    <input type="text" vjs-att="label" placeholder="Label"/>
                                 </div>
+                                <div className="vjs-inspector-field">
+                                    <label>Color</label>
+                                    <ColorPickerComponent propertyName="outline"/>
+                                </div>
+
+                                <ShapePropertiesInspector vertex={current}/>
+                            </div>
                         </div>
                     );
                 }

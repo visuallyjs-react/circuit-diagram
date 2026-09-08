@@ -1,23 +1,27 @@
 import { isNode } from "@visuallyjs/browser-ui";
+import {useDiagram} from "@visuallyjs/browser-ui-react";
 
 /**
  * Inspector for the properties of a shape. This component will likely be moved into the VisuallyJs React integration in an upcoming release.
  * @param vertex
- * @param model
- * @param surface
  * @constructor
  */
-export function ShapePropertiesInspector({ vertex, model, surface }) {
+export function ShapePropertiesInspector({ vertex }) {
     if (!vertex || !isNode(vertex)) return null;
 
     const { type, category } = vertex.data;
     if (!type || !category) return null;
 
-    const shapeLibrary = surface.getShapeLibrary();
-    const shapeSet = shapeLibrary.getShapeSet(category);
-    if (!shapeSet) return null;
+    const diagram = useDiagram()
+    function resolveShapeDef() {
+        if (diagram == null) return null
+        const shapeLibrary = diagram.$ui.getShapeLibrary();
+        const shapeSet = shapeLibrary.getShapeSet(category);
+        if (!shapeSet) return null;
+        return shapeSet.shapes.find(s => s.type === type)
+    }
 
-    const shapeDef = shapeSet.shapes.find(s => s.type === type);
+    const shapeDef = resolveShapeDef()
     if (!shapeDef || !shapeDef.properties) return null;
 
     return (

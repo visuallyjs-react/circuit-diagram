@@ -1,10 +1,8 @@
-import {InspectorComponent, useDiagram, ColorPickerComponent} from "@visuallyjs/browser-ui-react";
+import {InspectorComponent, useDiagram, ShapePropertiesInspector} from "@visuallyjs/browser-ui-react";
 import { isNode } from "@visuallyjs/browser-ui";
-import { ShapePropertiesInspector } from "./ShapePropertiesInspector";
 
 /**
- * Component inspector. Shows a header and a label field for all components, then uses a shape properties
- * inspector to draw out the form on a per-component basis.
+ * Component inspector. Shows a header and a label field for all components, then uses a shape properties inspector to draw out the form on a per-component basis.
  * @return {React.JSX.Element}
  * @constructor
  */
@@ -36,10 +34,6 @@ export default function Inspector() {
                                 <div className="vjs-inspector-field">
                                     <label>Label</label>
                                     <input type="text" vjs-att="label" placeholder="Label"/>
-                                </div>
-                                <div className="vjs-inspector-field">
-                                    <label>Color</label>
-                                    <ColorPickerComponent propertyName="outline"/>
                                 </div>
 
                                 <ShapePropertiesInspector vertex={current}/>
